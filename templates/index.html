@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scam Message Explainer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main class="container">
+  <h1>🛡️ Scam Message Explainer</h1>
+  <p class="sub">Paste any SMS, WhatsApp message or call transcript (English, Hindi or Hinglish).</p>
+
+  <textarea id="message" rows="6" maxlength="2000"
+            placeholder="Paste the suspicious message here..."></textarea>
+
+  <div class="row">
+    <select id="lang">
+        <option value="en">Explain in English</option>
+        <option value="hinglish">Hinglish me samjhao</option>
+        <option value="hi">हिंदी में समझाएँ</option>
+    </select>
+    <button id="analyzeBtn">Analyze</button>
+    <button id="clearBtn" class="ghost">Clear</button>
+  </div>
+
+  <div class="samples">
+    Try an example:
+    <button class="chip" data-sample="Dear customer, aapka SBI account aaj raat block ho jayega. KYC update karo turant: http://sbi-kyc-update.xyz/verify">Fake KYC</button>
+    <button class="chip" data-sample="Sir galti se aapke account me Rs 5,000 chale gaye. Collect request accept kar lo, paise wapas aa jayenge">Refund trap</button>
+    <button class="chip" data-sample="Your OTP is 482913. Do not share it with anyone. -HDFC Bank">Genuine OTP</button>
+  </div>
+
+  <div id="error" class="error hidden"></div>
+
+  <section id="result" class="hidden">
+    <div id="verdict" class="verdict"></div>
+
+    <h3 id="h-msg">Your message, with red flags marked</h3>
+    <p id="highlighted" class="msgbox"></p>
+
+    <h3 id="h-flags">Why it looks risky</h3>
+    <ul id="flags" class="flags"></ul>
+
+    <h3 id="h-entities">Details found</h3>
+    <p id="entities" class="muted"></p>
+
+    <h3 id="h-advice">What you should do</h3>
+    <ul id="advice"></ul>
+  </section>
+</main>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

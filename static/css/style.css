@@ -1,0 +1,418 @@
+/* The @import must stay on the very first line */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Devanagari:wght@400;500;600&display=swap");
+
+/* Lets the risk meter animate smoothly */
+@property --fill {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+/* ---------- Design tokens ---------- */
+:root {
+  color-scheme: light;
+
+  --font: "IBM Plex Sans", "IBM Plex Sans Devanagari", system-ui, "Segoe UI",
+          Roboto, "Noto Sans Devanagari", sans-serif;
+
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --sunken: #f6f8fa;
+  --ink: #131e2b;
+  --ink-2: #546275;
+  --line: #dce2ea;
+
+  --brand: #0e6b73;
+  --brand-hover: #0a565d;
+  --on-brand: #ffffff;
+
+  --high: #c4302b;
+  --medium: #a86400;
+  --low: #19794a;
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --shadow: 0 1px 2px rgb(19 30 43 / 0.05),
+            0 12px 28px -16px rgb(19 30 43 / 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d131a;
+    --surface: #141c26;
+    --sunken: #101720;
+    --ink: #e7edf4;
+    --ink-2: #9ba9ba;
+    --line: #243040;
+
+    --brand: #4cc3cc;
+    --brand-hover: #6fd3da;
+    --on-brand: #06242a;
+
+    --high: #ff7b73;
+    --medium: #f0b14a;
+    --low: #58ce8c;
+
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4),
+              0 14px 32px -18px rgb(0 0 0 / 0.7);
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: color-mix(in srgb, var(--brand) 28%, transparent); }
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.hidden { display: none !important; }
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(28px, 6vw, 60px) 20px 88px;
+}
+
+/* ---------- Header ---------- */
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 4.2vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  margin: 0 0 28px;
+  max-width: 56ch;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+/* ---------- Composer: textarea + toolbar read as one control ---------- */
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 168px;
+  padding: 16px 18px;
+  font: inherit;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+textarea::placeholder { color: color-mix(in srgb, var(--ink-2) 75%, transparent); }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s ease;
+}
+
+/* One shared focus state for the whole composer */
+.container:has(textarea:focus) textarea,
+.container:has(textarea:focus) .row { border-color: var(--brand); }
+
+button,
+select { font: inherit; cursor: pointer; }
+
+select {
+  appearance: none;
+  padding: 9px 32px 9px 12px;
+  color: var(--ink);
+  background-color: transparent;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 17px) 55%, calc(100% - 12px) 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.12s ease;
+}
+
+select:hover { background-color: var(--sunken); }
+select option { background: var(--surface); color: var(--ink); }
+
+#clearBtn { order: 1; margin-left: auto; }
+#analyzeBtn { order: 2; }
+
+.ghost {
+  padding: 9px 14px;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.ghost:hover { background: var(--sunken); color: var(--ink); }
+
+#analyzeBtn {
+  padding: 10px 22px;
+  font-weight: 600;
+  color: var(--on-brand);
+  background: var(--brand);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: background-color 0.12s ease, transform 0.08s ease;
+}
+
+#analyzeBtn:hover { background: var(--brand-hover); }
+#analyzeBtn:active { transform: translateY(1px); }
+#analyzeBtn:disabled { cursor: progress; opacity: 0.8; }
+
+/* Spinner appears while the request is running */
+#analyzeBtn:disabled::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: -2px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- Example chips ---------- */
+.samples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.chip {
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+.chip:hover { border-color: var(--brand); color: var(--brand); }
+
+/* ---------- Error ---------- */
+.error {
+  margin-top: 16px;
+  padding: 12px 14px;
+  font-size: 0.9375rem;
+  color: color-mix(in srgb, var(--high) 80%, var(--ink));
+  background: color-mix(in srgb, var(--high) 9%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--high) 30%, transparent);
+  border-radius: 10px;
+}
+
+/* ---------- Result card ---------- */
+#result {
+  margin-top: 28px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+#result h3 {
+  margin: 28px 0 12px;
+  padding-top: 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Verdict + risk meter (the one bold element) ---------- */
+.verdict {
+  --sev: var(--low);
+  margin: 0;
+  padding: 20px 22px 22px;
+  background: color-mix(in srgb, var(--sev) 9%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--sev) 28%, transparent);
+  border-radius: var(--radius-md);
+  font-variant-numeric: tabular-nums;
+}
+
+.verdict.risk-high { --sev: var(--high); }
+.verdict.risk-medium { --sev: var(--medium); }
+.verdict.risk-low { --sev: var(--low); }
+
+.verdict h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.25rem, 3.6vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: color-mix(in srgb, var(--sev) 75%, var(--ink));
+  text-wrap: balance;
+}
+
+.verdict p { margin: 4px 0 0; max-width: 62ch; text-wrap: pretty; }
+.verdict p:first-of-type { font-size: 0.9375rem; color: var(--ink-2); }
+.verdict p:first-of-type strong { color: var(--ink); font-weight: 600; }
+
+/* Three segments: low fills 1, medium fills 2, high fills 3 */
+.verdict::after {
+  content: "";
+  display: block;
+  height: 6px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--sev) var(--fill),
+    color-mix(in srgb, var(--ink) 12%, transparent) var(--fill)
+  );
+  -webkit-mask: repeating-linear-gradient(
+    90deg, #000 0, #000 calc(33.333% - 4px), transparent calc(33.333% - 4px), transparent 33.333%);
+          mask: repeating-linear-gradient(
+    90deg, #000 0, #000 calc(33.333% - 4px), transparent calc(33.333% - 4px), transparent 33.333%);
+  animation: meter 0.8s cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+
+.verdict.risk-low::after { --fill: 33.333%; }
+.verdict.risk-medium::after { --fill: 66.666%; }
+.verdict.risk-high::after { --fill: 100%; }
+
+@keyframes meter { from { --fill: 0%; } }
+
+/* ---------- Highlighted message ---------- */
+.msgbox {
+  margin: 0;
+  padding: 14px 16px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: var(--sunken);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+mark {
+  --sev: var(--medium);
+  padding: 0.05em 0.25em;
+  color: inherit;
+  background: color-mix(in srgb, var(--sev) 20%, transparent);
+  box-shadow: inset 0 -2px 0 var(--sev);
+  border-radius: 4px;
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+
+mark.sev-high { --sev: var(--high); }
+mark.sev-medium { --sev: var(--medium); }
+mark.sev-low { --sev: var(--ink-2); }
+
+/* ---------- Red flags ---------- */
+.flags { margin: 0; padding: 0; list-style: none; }
+
+.flags li {
+  --sev: var(--low);
+  position: relative;
+  padding: 14px 0 14px 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.flags li:first-child { padding-top: 0; }
+.flags li:first-child::before { top: 0.5em; }
+.flags li:last-child { padding-bottom: 0; border-bottom: 0; }
+
+.flags li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: calc(14px + 0.5em);
+  width: 10px;
+  height: 10px;
+  background: var(--sev);
+  border-radius: 50%;
+}
+
+.flags li.sev-high { --sev: var(--high); }
+.flags li.sev-medium { --sev: var(--medium); }
+.flags li.sev-low { --sev: var(--ink-2); }
+
+.flags li strong { display: block; font-weight: 600; }
+.flags li br { display: none; }
+.flags li small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+/* ---------- Details + advice ---------- */
+.muted {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+#advice { margin: 0; padding-left: 1.25rem; }
+#advice li { margin-bottom: 8px; padding-left: 4px; text-wrap: pretty; }
+#advice li::marker { color: var(--brand); }
+#advice li:last-child { margin-bottom: 0; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 520px) {
+  .row { flex-wrap: wrap; }
+  select { flex: 1 1 100%; }
+  #clearBtn { margin-left: 0; flex: 0 0 auto; }
+  #analyzeBtn { flex: 1; }
+  #result { padding: 16px; }
+  .verdict { padding: 16px; }
+}
+
+/* ---------- Respect reduced-motion settings ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

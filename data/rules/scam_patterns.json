@@ -1,0 +1,238 @@
+{
+  "scam_types": {
+    "safe": {
+      "label": "Looks legitimate",
+      "label_hl": "Legitimate lag raha hai",
+      "description": "No strong scam pattern found. Genuine alerts usually don't ask you to click links or share OTP/PIN.",
+      "description_hl": "Koi strong scam pattern nahi mila. Asli alerts link click karne ya OTP/PIN share karne ko nahi kehte.",
+      "advice": [],
+      "advice_hl": [],
+      "keywords": []
+    },
+    "fake_kyc": {
+      "label": "Fake KYC / account block scam",
+      "label_hl": "Fake KYC / account block scam",
+      "description": "Scammers claim your KYC has expired and your account will be blocked, then push you to a fake link or ask for OTP, Aadhaar or PAN to empty your account.",
+      "description_hl": "Scammer bolta hai KYC expire ho gaya aur account block hoga, phir fake link par le jaata hai ya OTP/Aadhaar/PAN maangta hai.",
+      "advice": [
+        "Banks don't do KYC through SMS links or phone calls. Visit your branch or use the official app.",
+        "Don't click the link or call the number given in the message."
+      ],
+      "advice_hl": [
+        "Bank SMS link ya call par KYC nahi karta. Branch jao ya official app use karo.",
+        "Message ka link click mat karo aur diye gaye number par call mat karo."
+      ],
+      "keywords": [
+        "\\bk\\.?y\\.?c\\b",
+        "\\b(?:pan|aadhaar|aadhar|adhar)\\b",
+        "\\b(?:update|updt|verify|verification)\\b",
+        "\\b(?:account|acc|a/c)\\b.{0,40}\\b(?:block|blck|band|freeze|suspend)\\w*"
+      ]
+    },
+    "payment_trap": {
+      "label": "UPI refund / collect-request scam",
+      "label_hl": "UPI refund / collect-request scam",
+      "description": "Scammers send a 'collect request' or claim they paid you by mistake, so you approve the request or enter your UPI PIN and lose money.",
+      "description_hl": "Scammer 'collect request' bhejta hai ya bolta hai galti se paise bhej diye, taaki aap request approve karo ya UPI PIN dalo aur paise kat jaayein.",
+      "advice": [
+        "You never need to enter your UPI PIN or accept a request to receive money.",
+        "If someone says they paid you by mistake, check your bank balance and ask them to reverse it through their own bank."
+      ],
+      "advice_hl": [
+        "Paise receive karne ke liye UPI PIN dalna ya request accept karna kabhi nahi padta.",
+        "Agar koi bole galti se paise bheje, apna balance check karo aur use apne bank se reverse karwane ko bolo."
+      ],
+      "keywords": [
+        "\\bcollect request\\b",
+        "\\bgalti se\\b",
+        "\\brefund\\b",
+        "\\bscan\\b.{0,15}\\bqr\\b",
+        "\\b(?:accept|approve)\\b.{0,15}\\brequest\\b",
+        "\\bupi pin\\b"
+      ]
+    },
+    "lottery_prize": {
+      "label": "Lottery / prize scam",
+      "label_hl": "Lottery / inaam scam",
+      "description": "You're told you've won a lottery, KBC draw or free gift, then asked to pay a 'processing fee' or share details to claim it.",
+      "description_hl": "Aapko bola jaata hai lottery, KBC ya free gift jeeta hai, phir 'processing fee' ya details maangte hain.",
+      "advice": [
+        "You can't win a lottery you never entered. Genuine prizes never need a fee.",
+        "Block and report the sender."
+      ],
+      "advice_hl": [
+        "Jo lottery aapne bhari hi nahi, wo jeet nahi sakte. Asli inaam ke liye fee nahi lagti.",
+        "Sender ko block aur report karo."
+      ],
+      "keywords": [
+        "\\b(?:lottery|jackpot|lucky draw|kbc)\\b",
+        "\\byou(?:'ve| have)? won\\b",
+        "\\b(?:congratulations|winner|inaam|prize)\\b",
+        "\\bjeet\\w*",
+        "\\b(?:gift|free iphone)\\b"
+      ]
+    },
+    "job_offer": {
+      "label": "Fake job / easy-earning scam",
+      "label_hl": "Fake job / easy kamai scam",
+      "description": "Easy work-from-home jobs with high daily pay, where you must first pay a registration fee or complete 'tasks' that lead to a deposit trap.",
+      "description_hl": "Ghar baithe aasan kaam aur high daily pay ka lalach, par pehle registration fee ya 'tasks' ke naam par paise jama karwate hain.",
+      "advice": [
+        "Genuine employers don't charge registration or joining fees.",
+        "Check the company on its official website and LinkedIn before replying."
+      ],
+      "advice_hl": [
+        "Asli company registration ya joining fee nahi leti.",
+        "Reply karne se pehle company ko official website aur LinkedIn par check karo."
+      ],
+      "keywords": [
+        "\\b(?:work from home|ghar baithe)\\b",
+        "\\bpart[ -]?time\\b",
+        "\\bearn\\b.{0,30}\\b(?:per day|daily|a day)\\b",
+        "\\b(?:registration|joining|processing) (?:fee|charges?)\\b",
+        "\\b(?:data entry|tasks?)\\b",
+        "\\b(?:like|subscribe)\\b"
+      ]
+    },
+    "utility_threat": {
+      "label": "Utility / SIM disconnection scam",
+      "label_hl": "Bijli / SIM disconnection scam",
+      "description": "A message says your electricity or SIM will be cut tonight unless you call an 'officer' or update details via a link.",
+      "description_hl": "Message bolta hai aaj raat bijli ya SIM kat jaayegi jab tak aap 'officer' ko call na karo ya link se details update na karo.",
+      "advice": [
+        "Electricity boards don't threaten disconnection through random numbers. Check your bill on the official app or website.",
+        "Don't call back numbers given in such messages."
+      ],
+      "advice_hl": [
+        "Bijli board random number se disconnection ki dhamki nahi deta. Bill official app ya website par check karo.",
+        "Aise message ke number par call back mat karo."
+      ],
+      "keywords": [
+        "\\b(?:bijli|electricity|power)\\b",
+        "\\bbill\\b",
+        "\\b(?:disconnect|cut|kat)\\w*",
+        "\\bsim\\b",
+        "\\b(?:tonight|aaj raat|9[:.]30)\\b",
+        "\\bconsumer\\b"
+      ]
+    }
+  },
+
+  "red_flags": {
+    "urgency": {
+      "label": "Creates urgency",
+      "label_hl": "Jaldi karne ka pressure",
+      "severity": "medium",
+      "explanation": "Scammers rush you so you don't have time to think or verify.",
+      "explanation_hl": "Scammer jaldi karne ka pressure dalte hain taaki aap sochne ya check karne ka time na lo.",
+      "negation_guard": false,
+      "patterns": [
+        "\\b(?:turant|jaldi|immediately|urgent(?:ly)?|aaj hi|last chance|expires?|expire ho)\\b",
+        "\\bwithin \\d+ ?(?:hours?|hrs?|mins?|minutes?)",
+        "\\b(?:24|48) ?(?:hours?|hrs?|ghant\\w*)",
+        "\\babhi (?:karo|kare|click|verify|update|call)",
+        "\\baaj raat\\b"
+      ]
+    },
+    "threat": {
+      "label": "Threatens account or service",
+      "label_hl": "Account ya service band karne ki dhamki",
+      "severity": "high",
+      "explanation": "Fear of blocking, disconnection or legal action is used to make you act without thinking.",
+      "explanation_hl": "Block, disconnection ya legal action ka dar dikhake aapse bina soche kaam karwate hain.",
+      "negation_guard": false,
+      "patterns": [
+        "\\b(?:blocked?|blck|suspend(?:ed)?|freeze|frozen|deactivate[d]?|disconnect(?:ed)?)\\b",
+        "\\b(?:account|card|sim|upi|connection|number|bijli)\\b.{0,40}\\b(?:band|bandh)\\b",
+        "\\b(?:legal action|arrest|police complaint|court notice|power cut)\\b"
+      ]
+    },
+    "credential_request": {
+      "label": "Asks for OTP / PIN / sensitive details",
+      "label_hl": "OTP / PIN / sensitive details maangta hai",
+      "severity": "high",
+      "explanation": "No bank or genuine company ever asks you to share your OTP, PIN, CVV or password.",
+      "explanation_hl": "Asli bank ya company kabhi OTP, PIN, CVV ya password share karne ko nahi kehti.",
+      "negation_guard": true,
+      "patterns": [
+        "\\b(?:share|send|batao|bata do|bhejo|bhej do|enter|dalo|de do|provide|verify|confirm|bataiye)\\b.{0,30}\\b(?:otp|pin|cvv|password|mpin|card number|aadhaar|aadhar)\\b",
+        "\\b(?:otp|pin|cvv|password|mpin|card number|aadhaar|aadhar)\\b.{0,30}\\b(?:share|send|batao|bata do|bhejo|bhej do|enter|dalo|de do|provide|verify|confirm)\\b"
+      ]
+    },
+    "payment_request": {
+      "label": "Pushes you to accept a payment request / scan QR",
+      "label_hl": "Payment request accept ya QR scan karwata hai",
+      "severity": "high",
+      "explanation": "Receiving money never needs a PIN, a QR scan or accepting a request. Doing so sends money out of your account.",
+      "explanation_hl": "Paise receive karne ke liye PIN, QR scan ya request accept nahi karna padta. Aisa karne par aapke paise nikalte hain.",
+      "negation_guard": false,
+      "patterns": [
+        "\\b(?:collect request|payment request|accept(?: the)? request|approve(?: the)? request)\\b",
+        "\\bscan (?:this |the |is )?qr\\b",
+        "\\bgalti se\\b.{0,40}\\b(?:paise|payment|rupaye|rupees|amount|\\d)",
+        "\\bby mistake\\b.{0,40}\\b(?:sent|transferred|credited)\\b"
+      ]
+    },
+    "prize_bait": {
+      "label": "Promises a prize or gift",
+      "label_hl": "Inaam ya gift ka lalach",
+      "severity": "medium",
+      "explanation": "Unexpected prizes are bait to collect fees or personal details.",
+      "explanation_hl": "Achanak mile inaam ka lalach fee ya personal details nikalne ke liye hota hai.",
+      "negation_guard": false,
+      "patterns": [
+        "\\b(?:lottery|jackpot|lucky draw|you(?:'ve| have)? won|congratulations|winner|inaam|prize|gift card|kbc)\\b",
+        "\\bjeet\\w*",
+        "\\bfree (?:iphone|gift|recharge|laptop)\\b"
+      ]
+    },
+    "remote_access": {
+      "label": "Asks you to install an app / screen-sharing tool",
+      "label_hl": "App install ya screen-sharing tool maangta hai",
+      "severity": "high",
+      "explanation": "Apps like AnyDesk let a scammer see and control your phone and approve payments.",
+      "explanation_hl": "AnyDesk jaisi apps se scammer aapka phone control karke payments approve kar sakta hai.",
+      "negation_guard": false,
+      "patterns": [
+        "\\b(?:anydesk|teamviewer|quick ?support|rustdesk|screen ?share)\\b",
+        "\\.apk\\b",
+        "\\b(?:install|download) (?:this |the )?(?:app|application)\\b"
+      ]
+    },
+    "job_bait": {
+      "label": "Easy-money or fee-for-job offer",
+      "label_hl": "Aasan kamai ya job ke liye fee ka lalach",
+      "severity": "medium",
+      "explanation": "Genuine jobs don't charge you to join, and high pay for simple tasks is a common lure.",
+      "explanation_hl": "Asli job me join karne ke paise nahi lagte, aur aasan kaam ke bade paise ka vaada aksar jaal hota hai.",
+      "negation_guard": false,
+      "patterns": [
+        "\\b(?:work from home|ghar baithe)\\b",
+        "\\bpart[ -]?time (?:job|work)\\b",
+        "\\bearn\\b.{0,30}\\b(?:per day|daily|a day)\\b",
+        "\\bdaily (?:income|earning)\\b",
+        "\\b(?:registration|joining|processing|security|delivery) (?:fee|charges?)\\b"
+      ]
+    },
+    "fake_authority": {
+      "label": "Claims to be from a known organisation",
+      "label_hl": "Kisi jaani-maani sanstha ka naam leta hai",
+      "severity": "low",
+      "explanation": "Scammers borrow the name of banks, RBI, tax or utility departments to look trustworthy. Verify through the official app or website.",
+      "explanation_hl": "Scammer bank, RBI, tax ya bijli vibhag ka naam use karke bharosa jeetne ki koshish karte hain. Official app ya website se verify karo.",
+      "negation_guard": false,
+      "patterns": [
+        "\\b(?:rbi|npci|sbi|hdfc|icici|axis bank|kotak|pnb|paytm|phonepe|google ?pay|gpay|income tax|customs|cbi|trai|electricity board|mseb|adani electricity|tata power|customer care|kyc team|bank officer)\\b"
+      ]
+    },
+    "suspicious_link": {
+      "label": "Contains a link",
+      "label_hl": "Message me link hai",
+      "severity": "medium",
+      "explanation": "Links in unexpected messages can lead to fake websites that steal your details.",
+      "explanation_hl": "Anjaan message ke link fake website par le ja sakte hain jo aapki details chura leti hai.",
+      "negation_guard": false,
+      "patterns": []
+    }
+  }
+}
