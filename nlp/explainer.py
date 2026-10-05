@@ -101,5 +101,7 @@ def analyze(text: str, lang: str = "en") -> dict:
         ],
         "entities": {k: [e["value"] for e in v] for k, v in entities.items()},
         "advice": advice,
+        "advice_specific": type_advice if show_type else [],
+        "advice_general": GENERIC_ADVICE[lang],
         "highlights": _highlights(flags),
     }

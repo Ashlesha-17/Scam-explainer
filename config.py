@@ -9,3 +9,11 @@ BASELINE_MODEL_PATH = BASE_DIR / "models" / "baseline" / "model.joblib"
 
 CONFIDENCE_THRESHOLD = 0.5   # below this, fall back to rule-based result
 MAX_MESSAGE_LENGTH = 2000
+
+# --- OCR (screenshot input) ---
+TESSERACT_CMD = r"C:\Program Files\Tesseract-OCR\tesseract.exe"  # ignored if the file doesn't exist
+OCR_LANGS = "eng+hin"
+OCR_PSM = 4                 # 4 = single column of text, good for chat screenshots (try 6 if results are poor)
+OCR_MIN_CONFIDENCE = 55     # below this, show a "hard to read" warning
+OCR_MIN_CHARS = 15
+MAX_UPLOAD_MB = 5

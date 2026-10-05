@@ -7,21 +7,43 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z" fill="currentColor"/>
+          <path d="m8.5 12 2.5 2.5 4.5-5" fill="none" style="stroke: var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Scam Message Explainer
+    </div>
+    <span class="topbar-note">Free to use. Your messages are not stored.</span>
+  </div>
+</header>
+
 <main class="container">
-  <h1>🛡️ Scam Message Explainer</h1>
-  <p class="sub">Paste any SMS, WhatsApp message or call transcript (English, Hindi or Hinglish).</p>
+  <section class="hero">
+    <h1>Check a suspicious message</h1>
+    <p class="sub">Paste an SMS, WhatsApp message or call transcript, or upload a screenshot. Works in English, Hindi and Hinglish.</p>
+  </section>
 
-  <textarea id="message" rows="6" maxlength="2000"
-            placeholder="Paste the suspicious message here..."></textarea>
+  <div class="composer">
+    <textarea id="message" rows="6" maxlength="2000"
+              placeholder="Paste the suspicious message here, or press Ctrl+V to paste a screenshot..."></textarea>
 
-  <div class="row">
-    <select id="lang">
+    <div class="row">
+      <select id="lang" aria-label="Language of the explanation">
         <option value="en">Explain in English</option>
         <option value="hinglish">Hinglish me samjhao</option>
         <option value="hi">हिंदी में समझाएँ</option>
-    </select>
-    <button id="analyzeBtn">Analyze</button>
-    <button id="clearBtn" class="ghost">Clear</button>
+      </select>
+      <button id="uploadBtn" class="ghost" type="button">📷 Screenshot</button>
+      <input type="file" id="imageInput" accept="image/png,image/jpeg,image/webp" hidden>
+      <button id="analyzeBtn">Analyze</button>
+      <button id="clearBtn" class="ghost">Clear</button>
+    </div>
   </div>
 
   <div class="samples">
@@ -29,26 +51,68 @@
     <button class="chip" data-sample="Dear customer, aapka SBI account aaj raat block ho jayega. KYC update karo turant: http://sbi-kyc-update.xyz/verify">Fake KYC</button>
     <button class="chip" data-sample="Sir galti se aapke account me Rs 5,000 chale gaye. Collect request accept kar lo, paise wapas aa jayenge">Refund trap</button>
     <button class="chip" data-sample="Your OTP is 482913. Do not share it with anyone. -HDFC Bank">Genuine OTP</button>
+    <button class="chip" data-sample="आपका KYC अपडेट नहीं है, खाता बंद हो जाएगा। अभी लिंक पर क्लिक करें http://sbi-kyc.xyz">हिंदी उदाहरण</button>
   </div>
 
-  <div id="error" class="error hidden"></div>
+  <div id="preview" class="preview hidden">
+    <a id="previewLink" href="#" target="_blank" rel="noopener" title="Open full size">
+      <img id="previewImg" alt="Uploaded screenshot preview">
+    </a>
+    <div class="preview-meta">
+      <strong id="previewName"></strong>
+      <span id="previewSize" class="muted"></span>
+      <button id="previewRemove" class="ghost" type="button">Remove</button>
+    </div>
+  </div>
+
+  <div id="ocrStatus" class="status hidden" role="status"></div>
+  <div id="error" class="error hidden" role="alert"></div>
 
   <section id="result" class="hidden">
+    <div class="result-tools">
+      <span id="ttsNote" class="muted"></span>
+      <button id="listenBtn" class="ghost" type="button">🔊 Listen</button>
+    </div>
+
     <div id="verdict" class="verdict"></div>
 
-    <h3 id="h-msg">Your message, with red flags marked</h3>
-    <p id="highlighted" class="msgbox"></p>
+    <div class="result-grid">
+      <section class="evidence">
+        <h3 id="h-msg">Your message, with red flags marked</h3>
+        <div id="legend" class="legend hidden"></div>
+        <p id="highlighted" class="msgbox"></p>
 
-    <h3 id="h-flags">Why it looks risky</h3>
-    <ul id="flags" class="flags"></ul>
+        <h3 id="h-flags">Why it looks risky</h3>
+        <ul id="flags" class="flags"></ul>
 
-    <h3 id="h-entities">Details found</h3>
-    <p id="entities" class="muted"></p>
+        <h3 id="h-entities">Details found</h3>
+        <div id="entities" class="entities"></div>
+      </section>
 
-    <h3 id="h-advice">What you should do</h3>
-    <ul id="advice"></ul>
+      <aside class="actions" aria-labelledby="h-advice">
+        <h3 id="h-advice">What you should do</h3>
+
+        <div id="nowBlock">
+          <h4 id="h-now">Do this now</h4>
+          <ul id="adviceNow" class="steps"></ul>
+        </div>
+
+        <div id="lost" class="lost hidden"></div>
+
+        <div id="alwaysBlock">
+          <h4 id="h-always">Always remember</h4>
+          <ul id="adviceAlways" class="always"></ul>
+        </div>
+      </aside>
+    </div>
   </section>
+
+  <footer class="foot">
+    This tool helps you judge a message but cannot guarantee safety.
+    If you lose money, call <strong>1930</strong> or report at cybercrime.gov.in.
+  </footer>
 </main>
+
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

@@ -86,6 +86,7 @@ packaging==26.3
 pandas==3.0.6
 pandocfilters==1.5.1
 parso==0.8.7
+pillow==12.3.0
 platformdirs==4.12.2
 pluggy==1.6.0
 prometheus_client==0.26.0
@@ -96,6 +97,7 @@ pure_eval==0.2.4
 pyarrow==25.0.1
 pycparser==3.0
 Pygments==2.21.0
+pytesseract==0.3.13
 pytest==9.1.1
 python-dateutil==2.9.0.post0
 python-json-logger==4.2.0
